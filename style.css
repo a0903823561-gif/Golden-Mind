@@ -1,0 +1,679 @@
+/* === 共用樣式 === */
+body {
+  background-color: #000;
+  color: #FFD700;
+  font-family: "Microsoft JhengHei", sans-serif;
+  text-align: center;
+}
+
+h1, p {
+  font-size: 48px;
+  margin: 20px;
+}
+
+button {
+  font-size: 32px;
+  background-color: #1E3A8A;
+  color: #FFF;
+  border: none;
+  border-radius: 12px;
+  padding: 15px 30px;
+  cursor: pointer;
+  margin: 10px;
+}
+button:hover {
+  background-color: #FFD700;
+  color: #000;
+}
+
+/* === 記憶花園 Memory Garden === */
+#memory-board {
+  display: grid;
+  grid-gap: 15px;
+  justify-content: center;   /* 水平置中 */
+  align-content: center;     /* 垂直置中 */
+  margin: 20px auto;         /* 上下留白，左右自動置中 */
+  max-width: 95vw;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+
+/* 簡單模式 (3x4 = 12 張) */
+#memory-board.easy .card {
+  width: 160px;
+  height: 160px;
+  font-size: 80px;
+  background-color: #87cefa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+/* 中等模式 (4x4 = 16 張) */
+#memory-board.medium .card {
+  width: 140px;
+  height: 140px;
+  font-size: 72px;
+  background-color: #87cefa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+/* 困難模式 (5x4 = 20 張) */
+#memory-board.hard .card {
+  width: 120px;
+  height: 120px;
+  font-size: 64px;
+  background-color: #87cefa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+/* === 專注森林 Focus Forest === */
+#controls {
+  margin-bottom: 20px;
+}
+
+#focus-board {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  overflow: hidden;
+  background: none;
+}
+
+#focus-board .fruit {
+  font-size: 72px;
+  cursor: pointer;
+  position: absolute;
+  transition: top 0.1s linear;
+}
+
+/* === 反應車站 Reaction Station === */
+/* 控制區域 */
+body {
+  background-color: #000;
+  color: #FFD700;
+  font-family: "Microsoft JhengHei", sans-serif;
+  text-align: center;
+}
+
+button {
+  background-color: #FFD700;
+  color: #000;
+  border: none;
+  padding: 18px 36px;   /* 按鈕更大 */
+  margin: 12px;
+  font-size: 28px;      /* 字體更大 */
+  border-radius: 12px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #FFA500;
+}
+
+#traffic-lights {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 20px 0;
+}
+.light {
+  width: 120px;   /* 燈號更大 */
+  height: 120px;
+  border-radius: 50%;
+  background-color: gray;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+.light.red.active { background-color: red; opacity: 1; }
+.light.yellow.active { background-color: yellow; opacity: 1; }
+.light.green.active { background-color: green; opacity: 1; }
+
+#reaction-board {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  border: 2px solid #333;
+  background-color: #111;
+}
+
+.item {
+  font-size: 100px;   /* 水果更大 */
+  position: absolute;
+  cursor: pointer;
+  z-index: 10;
+  color: white;
+}
+
+#question, #progress {
+  text-align: center;
+  font-size: 40px;   /* 題目字體更大 */
+  margin: 10px 0;
+  color: #fff;
+}
+#result {
+  text-align: center;
+  font-size: 42px;
+  margin: 20px 0;
+  color: #FFD700;
+}
+
+#restart-btn {
+  display: none;
+  background-color: #FFD700;
+  color: #000;
+  border: none;
+  padding: 18px 36px;
+  margin: 20px auto;
+  font-size: 28px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+#restart-btn:hover {
+  background-color: #FFA500;
+}
+
+#timer-bar {
+  width: 80%;
+  height: 25px;
+  background-color: #333;
+  margin: 20px auto;
+  border-radius: 12px;
+  overflow: hidden;
+}
+#timer-progress {
+  height: 100%;
+  background-color: #FFD700;
+  width: 100%;
+  transition: width 1s linear;
+}
+
+#timer-bar {
+  width: 80%;
+  height: 25px;
+  background-color: #333;
+  margin: 20px auto;
+  border-radius: 12px;
+  overflow: hidden;
+}
+#timer-progress {
+  height: 100%;
+  width: 100%;
+  transition: width 1s linear, background-color 1s linear;
+  border-radius: 12px;
+}
+
+/* === 響應式設計 (手機/平板) === */
+@media (max-width: 768px) {
+  h1, p {
+    font-size: 32px;
+  }
+  button {
+    font-size: 24px;
+    padding: 10px 20px;
+  }
+
+  #memory-board.easy .card {
+    width: 120px;
+    height: 120px;
+    font-size: 64px;
+  }
+  #memory-board.medium .card {
+    width: 100px;
+    height: 100px;
+    font-size: 56px;
+  }
+  #memory-board.hard .card {
+    width: 90px;
+    height: 90px;
+    font-size: 48px;
+  }
+}
+
+/* === 智慧超市 supermarket === */
+/* 全局設定 */
+/* 全局設定 */
+body {
+  background-color: #000;
+  color: #FFD700;
+  font-family: "Microsoft JhengHei", sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+h1 {
+  font-size: 48px;
+  margin: 20px 0;
+}
+
+p {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+/* 按鈕樣式 */
+button {
+  background-color: #FFD700;
+  color: #000;
+  border: none;
+  padding: 16px 32px;
+  margin: 10px;
+  font-size: 24px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #FFA500;
+}
+
+/* 主容器：遊戲區 + 右側欄 */
+#game-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 95%;
+  margin: 0 auto;
+}
+
+/* 主遊戲區 */
+#main-area {
+  flex: 3;
+  padding: 10px;
+}
+
+/* 右側欄位 */
+#sidebar {
+  flex: 1;
+  background-color: #111;
+  border-left: 2px solid #333;
+  padding: 20px;
+  color: #FFD700;
+  text-align: left;
+  min-height: 70vh;
+}
+
+#sidebar h2 {
+  font-size: 36px; /* 標題更大 */
+  margin-bottom: 15px;
+}
+
+#collected-list {
+  list-style-type: none; /* 移除前面的圓點 */
+  padding: 0;
+  margin: 0;
+}
+
+#collected-list li {
+  font-size: 40px; /* 放大字體 */
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+/* 遊戲區：掉落商品 */
+#supermarket-board {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  border: 2px solid #333;
+  background-color: #111;
+  overflow: hidden;
+}
+
+.item {
+  font-size: 80px;
+  position: absolute;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* 顯示進度與結果 */
+#shopping-list, #progress {
+  font-size: 28px;
+  margin: 10px 0;
+  color: #fff;
+}
+
+#result {
+  font-size: 32px;
+  margin: 20px 0;
+  color: #FFD700;
+}
+
+/* 倒數計時條 */
+#timer-bar {
+  width: 80%;
+  height: 25px;
+  background-color: #333;
+  margin: 20px auto;
+  border-radius: 12px;
+  overflow: hidden;
+}
+#timer-progress {
+  height: 100%;
+  width: 100%;
+  transition: width 1s linear, background-color 1s linear;
+  border-radius: 12px;
+}
+
+/* 返回選單按鈕 */
+#menu-btn {
+  display: none;
+  background-color: #FFD700;
+  color: #000;
+  border: none;
+  padding: 16px 32px;
+  margin: 20px auto;
+  font-size: 24px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+#menu-btn:hover {
+  background-color: #FFA500;
+}
+
+
+#menu-btn {
+  display: none;
+  background-color: #FFD700;
+  color: #000;
+  border: none;
+  padding: 18px 36px;
+  margin: 20px auto;
+  font-size: 28px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+#menu-btn:hover {
+  background-color: #FFA500;
+}
+
+
+#menu-btn {
+  display: none;
+  background-color: #FFD700;
+  color: #000;
+  border: none;
+  padding: 18px 36px;
+  margin: 20px auto;
+  font-size: 28px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+#menu-btn:hover {
+  background-color: #FFA500;
+}
+
+/* 全局設定 */
+body {
+  background-color: #000;
+  color: #FFD700;
+  font-family: "Microsoft JhengHei", sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+/* 標題字體放大 */
+h1 {
+  font-size: 64px; /* 主標題更大 */
+  margin: 20px 0;
+}
+
+h2 {
+  font-size: 48px; /* 次標題也放大 */
+  margin: 15px 0;
+}
+
+p {
+  font-size: 32px; /* 一般文字放大 */
+  margin: 10px 0;
+}
+
+/* 按鈕樣式放大 */
+button {
+  background-color: #FFD700;
+  color: #000;
+  border: none;
+  padding: 20px 40px;
+  margin: 12px;
+  font-size: 32px; /* 按鈕字體放大 */
+  border-radius: 12px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #FFA500;
+}
+
+/* 主容器：遊戲區 + 右側欄 */
+#game-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 95%;
+  margin: 0 auto;
+}
+
+/* 主遊戲區加大 */
+#main-area {
+  flex: 5; /* 主區域佔比較大 */
+  padding: 10px;
+}
+
+/* 右側欄位縮小，但字體保持大 */
+#sidebar {
+  flex: 1; /* 占比縮小 */
+  max-width: 220px; /* 限制最大寬度 */
+  background-color: #111;
+  border-left: 2px solid #333;
+  padding: 10px;
+  color: #FFD700;
+  text-align: left;
+  min-height: 60vh;
+}
+
+#sidebar h2 {
+  font-size: 36px; /* 保持大字體 */
+  margin-bottom: 15px;
+}
+
+#collected-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#collected-list li {
+  font-size: 36px; /* 保持大字體 */
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+
+/* 遊戲區：掉落商品 */
+#supermarket-board {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  border: 2px solid #333;
+  background-color: #111;
+  overflow: hidden;
+}
+
+.item {
+  font-size: 100px; /* 商品更大 */
+  position: absolute;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* 顯示進度與結果 */
+#shopping-list, #progress {
+  font-size: 36px; /* 放大進度文字 */
+  margin: 10px 0;
+  color: #fff;
+}
+
+#result {
+  font-size: 40px; /* 結果更大 */
+  margin: 20px 0;
+  color: #FFD700;
+}
+
+/* 倒數計時條 */
+#timer-bar {
+  width: 80%;
+  height: 35px; /* 計時條加高 */
+  background-color: #333;
+  margin: 20px auto;
+  border-radius: 12px;
+  overflow: hidden;
+}
+#timer-progress {
+  height: 100%;
+  width: 100%;
+  transition: width 1s linear, background-color 1s linear;
+  border-radius: 12px;
+}
+
+/* 返回選單按鈕 */
+#menu-btn {
+  display: none;
+  background-color: #FFD700;
+  color: #000;
+  border: none;
+  padding: 20px 40px;
+  margin: 20px auto;
+  font-size: 32px; /* 放大字體 */
+  border-radius: 12px;
+  cursor: pointer;
+}
+#menu-btn:hover {
+  background-color: #FFA500;
+}
+
+/* 選單整體容器 */
+#menu-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* 垂直置中 */
+  min-height: 100vh;
+  gap: 20px; /* 按鈕之間的間距縮小 */
+}
+
+/* 標題 */
+#menu-container h1 {
+  font-size: 64px; /* 放大標題 */
+  margin-bottom: 30px; /* 縮小與按鈕的距離 */
+}
+
+/* 選單按鈕 */
+#menu-container button {
+  background-color: #FFD700;
+  color: #000;
+  border: none;
+  padding: 20px 40px; /* 按鈕大小適中 */
+  font-size: 32px; /* 字體放大 */
+  border-radius: 10px;
+  cursor: pointer;
+  width: 30%; /* 按鈕寬度縮小，不要太佔版面 */
+  margin: 8px 0; /* 上下間距縮小 */
+}
+
+#menu-container button:hover {
+  background-color: #FFA500;
+}
+
+/* 選單容器 */
+#menu-container {
+  display: flex;
+  flex-direction: column; /* 改成直式排列 */
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  gap: 15px; /* 按鈕間距 */
+}
+
+/* 標題 */
+#menu-container h1 {
+  font-size: 64px;
+  margin-bottom: 25px;
+}
+
+/* 選單按鈕 */
+#menu-container button {
+  background-color: #FFD700;
+  color: #000;
+  border: none;
+  padding: 20px 40px;
+  font-size: 32px;
+  border-radius: 15px;
+  cursor: pointer;
+  width: 50%; /* 按鈕寬度固定，避免太寬 */
+  margin: 10px 0; /* 上下間距 */
+}
+
+#menu-container button:hover {
+  background-color: #FFA500;
+}
+
+/* 選單容器：直式排列 */
+#menu-container {
+  display: flex;
+  flex-direction: column; /* 改成直式 */
+  align-items: center;    /* 水平置中 */
+  justify-content: center;/* 垂直置中 */
+  min-height: 0vh;
+  gap: 15px; /* 按鈕間距稍微加大 */
+}
+
+/* 標題 */
+#menu-container h1 {
+  font-size: 80px; /* 標題再放大 */
+  margin-bottom: 40px;
+  color: #FFD700;
+}
+
+/* 選單按鈕 */
+#menu-container button {
+  background-color: #FFD700;
+  color: #000;
+  border: none;
+  padding: 35px 40px; /* 按鈕更大 */
+  font-size: 50px;    /* 字體再放大 */
+  border-radius: 24px;/* 圓角加大 */
+  cursor: pointer;
+  width: 75%;  /* 按鈕寬度固定 */
+  text-align: center;
+}
+
+#menu-container button:hover {
+  background-color: #FFA500;
+}
+
+#back-menu-btn {
+  background-color: #FFD700;
+  color: #000;
+  border: none;
+  padding: 20px 30px;
+  margin: 15px auto;
+  font-size: 50px; /* 放大字體 */
+  border-radius: 20px; /* 圓角加大 */
+  cursor: pointer;
+  display: block;
+}
+
+#back-menu-btn:hover {
+  background-color: #FFA500;
+}

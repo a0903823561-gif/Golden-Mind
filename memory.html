@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>記憶花園</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="memory.js" defer></script>
+</head>
+<body>
+  <h1>🌸 記憶花園</h1>
+  <p>請翻牌，找到相同的圖案！</p>
+  
+ <button onclick="startGame(3,4,'easy')">簡單 (3x4)</button>
+<button onclick="startGame(4,4,'medium')">中等 (4x4)</button>
+<button onclick="startGame(5,4,'hard')">困難 (5x4)</button>
+
+  
+  <div id="memory-board"></div>
+  
+  <p id="result"></p>
+  <button onclick="location.href='menu.html'">返回選單</button>
+</body>
+</html>
