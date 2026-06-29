@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>專注森林</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    #game-area {
+      position: relative;
+      width: 1500px;   /* 放大遊戲區域 */
+      height: 500px;  /* 放大遊戲區域 */
+      border: 3px solid #333;
+      margin: 20px auto;
+      overflow: hidden;
+      background-color: #333;
+    }
+    .fruit {
+      position: absolute;
+      font-size: 80px; /* 放大水果 */
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌳 專注森林</h1>
+  <button onclick="startFocusGame('easy')">簡單模式</button>
+  <button onclick="startFocusGame('medium')">中等模式</button>
+  <button onclick="startFocusGame('hard')">困難模式</button>
+
+  <p id="target" style="font-size: 50px; font-weight: bold; color: rgb(238, 237, 237);">
+  指定水果會顯示在這裡
+</p>
+<div id="game-area"></div>
+<p id="progress">進度會顯示在這裡</p>
+<p id="timer">剩餘時間：-- 秒</p>
+<p id="errors">錯誤次數：0</p>
+
+  <!-- 返回選單按鈕，初始隱藏 -->
+  <button id="back-menu-btn" style="display:none;" onclick="goBackMenu()">返回遊戲選單</button>
+
+  <!-- 重新開始按鈕，初始隱藏 -->
+  <button id="restart-btn" style="display:none;" onclick="restartGame()">重新開始</button>
+
+  <script src="focus.js"></script>
+</body>
+</html>

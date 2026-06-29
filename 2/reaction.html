@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>反應車站</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>🚉 反應車站</h1>
+  <p>燈號亮起時請快速點擊對應水果！</p>
+
+  <div id="controls">
+    <button onclick="startReactionGame('easy')">簡單模式</button>
+    <button onclick="startReactionGame('medium')">中等模式</button>
+    <button onclick="startReactionGame('hard')">困難模式</button>
+  </div>
+
+  <div id="traffic-lights">
+    <div class="light red"></div>
+    <div class="light yellow"></div>
+    <div class="light green"></div>
+  </div>
+
+  <p id="question">題目會顯示在這裡</p>
+  <p id="progress">進度會顯示在這裡</p>
+  <!-- 單一倒數計時條 -->
+  <div id="timer-bar"><div id="timer-progress"></div></div>
+
+  <div id="reaction-board"></div>
+  <p id="result"></p>
+  <button id="menu-btn" onclick="goBackMenu()">返回選單</button>
+
+  <script src="reaction.js"></script>
+</body>
+</html>
