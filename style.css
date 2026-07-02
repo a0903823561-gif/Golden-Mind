@@ -725,3 +725,40 @@ body {
     height: 50vh;          /* 高度依比例縮小 */
   }
 }
+
+#game-area {
+  width: 100%;
+  max-width: 800px;   /* 電腦版限制寬度 */
+  height: 70vh;       /* 手機版高度佔螢幕 70% */
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  body {
+    margin: 0;              /* 移除多餘邊距 */
+    padding: 0;
+  }
+
+  #menu-container, #buttons {
+    display: flex;
+    flex-direction: column; /* 改成直式排列 */
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+
+  button {
+    width: 90%;             /* 按鈕寬度拉大，減少左右留白 */
+    font-size: 20px;        /* 字體稍微放大，方便老人操作 */
+    padding: 15px;
+  }
+
+  #game-area {
+    height: 80vh;           /* 遊戲區域更大，減少上下留白 */
+  }
+}
+
+h1, p {
+  text-align: center;
+  margin: 10px 0;
+}
