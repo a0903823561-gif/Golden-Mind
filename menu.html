@@ -3,15 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <title>遊戲選單</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* 電腦版：橫式排列 */
+    #menu-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap; /* 避免太多按鈕時超出 */
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 18px;   /* 電腦字體固定 */
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    /* 手機版：直式排列 */
+    @media (max-width: 600px) {
+      #menu-container {
+        flex-direction: column; /* 改成直式 */
+        align-items: center;    /* 置中顯示 */
+        gap: 15px;
+      }
+
+      button {
+        width: 80%;            /* 按鈕寬度拉大 */
+        font-size: 20px;       /* 手機字體稍微放大 */
+      }
+    }
+  </style>
 </head>
 <body>
+  <h1>🎮 遊戲選單</h1>
   <div id="menu-container">
-    <h1>🎮 遊戲選單</h1>
-    <button onclick="window.location.href='memory.html'">🌸 記憶花園</button>
-    <button onclick="window.location.href='focus.html'">🌳 專注森林</button>
-    <button onclick="window.location.href='reaction.html'">🚉 反應車站</button>
-    <button onclick="window.location.href='market.html'">🛒 智慧超市</button>
+    <button onclick="window.location.href='memory.html'">🌼 記憶花園</button>
+    <button onclick="window.location.href='focus.html'">🌲 專注森林</button>
+    <button onclick="window.location.href='reaction.html'">🚆 反應車站</button>
+    <button onclick="window.location.href='market.html'">🛍️ 智慧超市</button>
   </div>
 </body>
 </html>
