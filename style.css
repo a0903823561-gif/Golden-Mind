@@ -677,3 +677,23 @@ button:hover {
 #back-menu-btn:hover {
   background-color: #FFA500;
 }
+
+body {
+  font-size: 18px;   /* 電腦版字體大小固定 */
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 16px;   /* 手機字體稍微縮小，避免超出螢幕 */
+  }
+  button {
+    width: 100%;       /* 手機按鈕佔滿寬度 */
+    font-size: 18px;   /* 手機按鈕字體稍微放大，方便點擊 */
+  }
+}
+
+\#game-area {
+  width: 100%;
+  max-width: 800px;   /* 電腦可放大 */
+  height: 60vh;       /* 高度依螢幕比例 */
+}
