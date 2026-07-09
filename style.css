@@ -762,3 +762,257 @@ h1, p {
   text-align: center;
   margin: 10px 0;
 }
+
+body {
+  font-size: 18px;   /* 電腦版字體固定 */
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 16px;   /* 手機字體稍微縮小 */
+  }
+
+  button {
+    width: 90%;        /* 按鈕寬度拉大 */
+    font-size: 20px;   /* 手機按鈕字體放大，方便點擊 */
+  }
+}
+
+.card {
+  background-color: #3498db;
+  color: yellow;
+  font-size: 24px;       /* 卡牌字體大小統一 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1/1;     /* 保持方形 */
+  border-radius: 8px;
+  cursor: pointer;
+  min-height: 100px;     /* 固定卡牌高度，避免困難模式縮小 */
+}
+.card {
+  background-color: #3498db;
+  color: yellow;
+  font-size: 24px;       /* 卡牌字體大小統一 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1/1;     /* 保持方形 */
+  border-radius: 8px;
+  cursor: pointer;
+  min-height: 100px;     /* 固定卡牌高度，避免困難模式縮小 */
+}
+
+.light {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  opacity: 0.3; /* 預設暗淡 */
+}
+
+.light.red { background-color: red; }
+.light.yellow { background-color: yellow; }
+.light.green { background-color: green; }
+
+.light.active {
+  opacity: 1; /* 亮起 */
+  box-shadow: 0 0 20px rgba(255,255,255,0.8); /* 額外光暈效果 */
+}
+.light {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  opacity: 0.3; /* 預設暗淡 */
+  transition: opacity 0.3s, box-shadow 0.3s;
+}
+
+.light.red { background-color: red; }
+.light.yellow { background-color: yellow; }
+.light.green { background-color: green; }
+
+.light.active {
+  opacity: 1; /* 亮起 */
+  box-shadow: 0 0 25px currentColor; /* 光暈效果 */
+}
+
+.card {
+  width: 100px;
+  height: 100px;
+  perspective: 1000px;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card .front, .card .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  border-radius: 8px;
+}
+
+.card .front {
+  background: #3498db;
+  color: yellow;
+}
+
+.card .back {
+  background: #fff;
+  transform: rotateY(180deg);
+}
+
+.card {
+  width: 100px;
+  height: 100px;
+  perspective: 1000px; /* 建立3D空間 */
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.front, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  border-radius: 8px;
+}
+
+.front {
+  background: #3498db;
+  color: yellow;
+}
+
+.back {
+  background: #fff;
+  transform: rotateY(180deg);
+}
+
+.card {
+  perspective: 1000px; /* 建立3D空間 */
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.front, .back {
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 150px;
+  border-radius: 100px;
+}
+
+.front {
+  background: #3498db;
+  color: yellow;
+}
+
+.back {
+  background: #fff;
+  transform: rotateY(180deg);
+}
+
+.card {
+  background-color: #89caf6;
+  color: yellow;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1/1;
+  border-radius: 12px;
+  cursor: pointer;
+  min-height: 250px;   /* 放大卡牌高度 */
+  width: 250px;        /* 放大卡牌寬度 */
+}
+
+#memory-board .front,
+#memory-board .back {
+  font-size: 120px !important;  /* 強制放大水果符號 */
+  line-height: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#controls button:last-child {
+  background-color: #FF4500; /* 專家模式按鈕橘紅色 */
+  color: #fff;
+}
+
+/* 通用遊戲說明樣式 */
+#instruction {
+  text-align: center;
+  margin: 20px;
+  padding: 25px;
+  border: 3px solid #0c99f7;   /* 藍色邊框 */
+  border-radius: 12px;         /* 圓角 */
+  background-color: #242729;   /* 深色背景 */
+  color: #FFD700;              /* 金色字體 */
+}
+
+#instruction h2 {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+#instruction p {
+  font-size: 28px;
+  line-height: 1.6;  /* 行距加大，方便閱讀 */
+  margin: 8px 0;
+}
+
+#instruction button {
+  background-color: #FFD700;
+  color: #000;
+  border: none;
+  padding: 16px 32px;
+  margin-top: 20px;
+  font-size: 28px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#instruction button:hover {
+  background-color: #FFA500;
+}
