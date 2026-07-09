@@ -8,7 +8,7 @@
     #game-area {
       position: relative;
       width: 1500px;   /* 放大遊戲區域 */
-      height: 500px;  /* 放大遊戲區域 */
+      height: 500px;   /* 放大遊戲區域 */
       border: 3px solid #333;
       margin: 20px auto;
       overflow: hidden;
@@ -16,31 +16,91 @@
     }
     .fruit {
       position: absolute;
-      font-size: 80px; /* 放大水果 */
+      font-size: 90px; /* 放大水果 */
       cursor: pointer;
+    }
+    /* 統一遊戲說明樣式 */
+    #instruction {
+      text-align: center;
+      margin: 20px;
+      padding: 25px;
+      border: 3px solid #0c99f7;
+      border-radius: 12px;
+      background-color: #242729;
+      color: #FFD700;
+    }
+    #instruction h2 {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+    #instruction p {
+      font-size: 28px;
+      line-height: 1.6;
+      margin: 8px 0;
+    }
+    #instruction button {
+      background-color: #FFD700;
+      color: #000;
+      border: none;
+      padding: 16px 32px;
+      margin-top: 20px;
+      font-size: 28px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    #instruction button:hover {
+      background-color: #FFA500;
+    }
+    /* 初始隱藏遊戲區 */
+    #controls, #game-area, #progress, #timer, #errors, #back-menu-btn, #restart-btn {
+      display: none;
     }
   </style>
 </head>
 <body>
   <h1>🌳 專注森林</h1>
-  <button onclick="startFocusGame('easy')">簡單模式</button>
-  <button onclick="startFocusGame('medium')">中等模式</button>
-  <button onclick="startFocusGame('hard')">困難模式</button>
+
+  <!-- 遊戲說明區 -->
+  <div id="instruction">
+    <h2>🎮 遊戲說明</h2>
+    <p>選擇難度後，系統會指定一種水果🍎。<br>
+       遊戲開始後，水果會隨機掉落在森林🌳中。<br>
+       請點擊🏹正確的指定水果來收集。<br>
+       錯誤❌三次或時間⏱結束遊戲失敗，完成指定數量即可過關⭕！</p>
+    <button onclick="showGame()">開始遊戲</button>
+  </div>
+
+  <!-- 難度選擇按鈕 -->
+  <div id="controls">
+    <button onclick="startFocusGame('easy')">簡單模式</button>
+    <button onclick="startFocusGame('medium')">中等模式</button>
+    <button onclick="startFocusGame('hard')">困難模式</button>
+  </div>
 
   <p id="target" style="font-size: 50px; font-weight: bold; color: rgb(238, 237, 237);">
-  指定水果會顯示在這裡
-</p>
-<div id="game-area"></div>
-<p id="progress">進度會顯示在這裡</p>
-<p id="timer">剩餘時間：-- 秒</p>
-<p id="errors">錯誤次數：0</p>
+    指定水果會顯示在這裡
+  </p>
+  <div id="game-area"></div>
+  <p id="progress">進度會顯示在這裡</p>
+  <p id="timer">剩餘時間：-- 秒</p>
+  <p id="errors">錯誤次數：0</p>
 
-  <!-- 返回選單按鈕，初始隱藏 -->
-  <button id="back-menu-btn" style="display:none;" onclick="goBackMenu()">返回遊戲選單</button>
+  <!-- 返回選單按鈕 -->
+  <button id="back-menu-btn" onclick="goBackMenu()">返回遊戲選單</button>
 
-  <!-- 重新開始按鈕，初始隱藏 -->
-  <button id="restart-btn" style="display:none;" onclick="restartGame()">重新開始</button>
+  <!-- 重新開始按鈕 -->
+  <button id="restart-btn" onclick="restartGame()">重新開始</button>
 
   <script src="focus.js"></script>
+  <script>
+    function showGame() {
+      document.getElementById("instruction").style.display = "none";
+      document.getElementById("controls").style.display = "block";
+      document.getElementById("game-area").style.display = "block";
+      document.getElementById("progress").style.display = "block";
+      document.getElementById("timer").style.display = "block";
+      document.getElementById("errors").style.display = "block";
+    }
+  </script>
 </body>
 </html>
