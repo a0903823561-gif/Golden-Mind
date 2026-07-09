@@ -5,19 +5,70 @@
   <title>記憶花園</title>
   <link rel="stylesheet" href="style.css">
   <script src="memory.js" defer></script>
+  <style>
+    #instruction {
+      text-align: center;
+      margin: 20px;
+      padding: 20px;
+      border: 2px solid #0c99f7;
+      border-radius: 10px;
+      background-color: #242729;
+    }
+    #buttons, #memory-board, #result {
+      display: none; /* 初始隱藏 */
+    }
+    #memory-board {
+      display: grid;
+      gap: 12px;
+      width: 100%;
+      max-width: 1800px;
+      margin: 50px auto;
+      justify-items: center;
+    }
+    .card {
+      background-color: #86b8da;
+      color: yellow;
+      font-size: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      aspect-ratio: 1/1;
+      border-radius: 100px;
+      cursor: pointer;
+      min-height: 150px; /* 保持卡牌高度一致 */
+    }
+  </style>
 </head>
 <body>
-  <h1>🌸 記憶花園</h1>
-  <p>請翻牌，找到相同的圖案！</p>
-  
- <button onclick="startGame(3,4,'easy')">簡單 (3x4)</button>
-<button onclick="startGame(4,4,'medium')">中等 (4x4)</button>
-<button onclick="startGame(5,4,'hard')">困難 (5x4)</button>
+  <h1>🌼 記憶花園</h1>
+  <p>熟悉的生活物品與花卉配對遊戲</p>
 
-  
+  <!-- 遊戲說明區 -->
+  <div id="instruction">
+    <h2>🎮 遊戲說明</h2>
+    <p>點擊卡牌翻開，找到相同的兩張即可消除。<br>
+       三種難度：簡單 (3x4)、中等 (4x4)、困難 (4x5)。<br>
+       考驗你的記憶力與專注力😣！</p>
+    <button onclick="showGame()">開始遊戲</button>
+  </div>
+
+  <!-- 難度選擇按鈕 -->
+  <div id="buttons">
+    <button onclick="startGame(3,4,'easy')">簡單 (3x4)</button>
+    <button onclick="startGame(4,4,'medium')">中等 (4x4)</button>
+    <button onclick="startGame(4,5,'hard')">困難 (4x5)</button>
+  </div>
+
+  <!-- 遊戲區 -->
   <div id="memory-board"></div>
-  
   <p id="result"></p>
   <button onclick="location.href='menu.html'">返回選單</button>
+
+  <script>
+    function showGame() {
+      document.getElementById("instruction").style.display = "none";
+      document.getElementById("buttons").style.display = "block";
+    }
+  </script>
 </body>
 </html>
