@@ -23,31 +23,49 @@ function startFocusGame(mode) {
   document.getElementById("target").innerText = "請點擊指定水果：" + targetFruit;
 
   // 模式控制掉落速度與時間限制
-  let speed;
+  let speed, dropCount;
   if (mode === "easy") {
     speed = 2500;
     timeLeft = 30;
+    dropCount = 3;
   } else if (mode === "medium") {
     speed = 1500;
     timeLeft = 20;
+    dropCount = 3;
   } else {
     speed = 800;
     timeLeft = 15;
+    dropCount = 2; // 困難模式一次只掉 2 顆，避免重疊
   }
 
   document.getElementById("timer").innerText = "剩餘時間：" + timeLeft + " 秒";
 
-  dropInterval = setInterval(() => dropMultipleFruits(3), speed); // 一次生成 3 個水果
+  dropInterval = setInterval(() => dropMultipleFruits(dropCount, mode), speed);
   timerCountdown = setInterval(updateTimer, 1000);
 }
 
-function dropMultipleFruits(count) {
-  let positions = []; // 用來記錄已使用的位置，避免重疊
+function dropMultipleFruits(count, mode) {
+  // 限制畫面同時存在的水果數量，避免堆積
+  if (document.querySelectorAll(".fruit").length > 8) return;
+
+  let sectionWidth = gameArea.offsetWidth / count;
+  let positions = [];
+
+  // 不同難度指定水果的生成機率
+  let probability;
+  if (mode === "easy") probability = 0.4;
+  else if (mode === "medium") probability = 0.3;
+  else probability = 0.2;
+
+  // 限制同時存在的指定水果數量
+  let targetOnScreen = Array.from(document.querySelectorAll(".fruit"))
+    .filter(f => f.innerText === targetFruit).length;
 
   for (let i = 0; i < count; i++) {
     let fruit;
-    if (Math.random() < 0.5) {
-      fruit = targetFruit; // 50% 機率生成指定水果
+    if (Math.random() < probability && targetOnScreen < 2) {
+      fruit = targetFruit;
+      targetOnScreen++;
     } else {
       fruit = fruits[Math.floor(Math.random() * fruits.length)];
     }
@@ -56,11 +74,14 @@ function dropMultipleFruits(count) {
     fruitElem.className = "fruit";
     fruitElem.innerText = fruit;
 
-    // 隨機生成位置，避免重疊
-    let leftPos;
+    // 每個水果落在不同區塊，並加隨機偏移，避免重疊
+    let baseLeft = i * sectionWidth;
+    let offset, leftPos;
+    let minGap = (mode === "hard") ? 80 : 60; // 困難模式加大間距
     do {
-      leftPos = Math.floor(Math.random() * 740);
-    } while (positions.some(pos => Math.abs(pos - leftPos) < 60)); // 保持至少 60px 間距
+      offset = Math.floor(Math.random() * (sectionWidth - minGap));
+      leftPos = baseLeft + offset;
+    } while (positions.some(pos => Math.abs(pos - leftPos) < minGap));
     positions.push(leftPos);
 
     fruitElem.style.left = leftPos + "px";
@@ -71,7 +92,7 @@ function dropMultipleFruits(count) {
     let fallSpeed = 3;
     let fall = setInterval(() => {
       let top = parseInt(fruitElem.style.top);
-      if (top >= 540) {
+      if (top >= gameArea.offsetHeight - 60) {
         clearInterval(fall);
         fruitElem.remove();
       } else {
@@ -85,7 +106,8 @@ function dropMultipleFruits(count) {
 
       if (fruit === targetFruit) {
         currentQuestion++;
-        document.getElementById("progress").innerText = "已點擊指定水果：" + currentQuestion + "/" + totalQuestions;
+        document.getElementById("progress").innerText =
+          "已點擊指定水果：" + currentQuestion + "/" + totalQuestions;
         if (currentQuestion >= totalQuestions) {
           endGame(true);
         }
@@ -126,62 +148,4 @@ function restartGame() {
 
 function goBackMenu() {
   window.location.href = "menu.html";
-}
-
-function dropMultipleFruits(count) {
-  let sectionWidth = 800 / count; // 遊戲區域寬度平均分成 count 區塊
-  let positions = [];
-
-  for (let i = 0; i < count; i++) {
-    let fruit;
-    if (Math.random() < 0.5) {
-      fruit = targetFruit; // 50% 機率生成指定水果
-    } else {
-      fruit = fruits[Math.floor(Math.random() * fruits.length)];
-    }
-
-    let fruitElem = document.createElement("div");
-    fruitElem.className = "fruit";
-    fruitElem.innerText = fruit;
-
-    // 每個水果落在不同區塊，並加隨機偏移
-    let baseLeft = i * sectionWidth;
-    let offset = Math.floor(Math.random() * (sectionWidth - 60)); // 保留間距
-    let leftPos = baseLeft + offset;
-
-    fruitElem.style.left = leftPos + "px";
-    fruitElem.style.top = "0px";
-
-    gameArea.appendChild(fruitElem);
-
-    let fallSpeed = 3;
-    let fall = setInterval(() => {
-      let top = parseInt(fruitElem.style.top);
-      if (top >= 540) {
-        clearInterval(fall);
-        fruitElem.remove();
-      } else {
-        fruitElem.style.top = top + fallSpeed + "px";
-      }
-    }, 30);
-
-    fruitElem.onclick = () => {
-      clearInterval(fall);
-      fruitElem.remove();
-
-      if (fruit === targetFruit) {
-        currentQuestion++;
-        document.getElementById("progress").innerText = "已點擊指定水果：" + currentQuestion + "/" + totalQuestions;
-        if (currentQuestion >= totalQuestions) {
-          endGame(true);
-        }
-      } else {
-        errors++;
-        document.getElementById("errors").innerText = "錯誤次數：" + errors;
-        if (errors >= maxErrors) {
-          endGame(false);
-        }
-      }
-    };
-  }
 }
