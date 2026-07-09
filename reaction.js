@@ -28,9 +28,9 @@ function startReactionGame(mode) {
   targetColor = colors[Math.floor(Math.random()*colors.length)];
   targetItems = mapping[targetColor];
 
+  // 切換燈號
   document.querySelectorAll(".light").forEach(l => {
     l.classList.remove("active");
-    l.style.opacity = 0.5;
   });
   document.querySelector(`.light.${targetColor}`).classList.add("active");
 
@@ -82,7 +82,22 @@ function createItem(board, symbol) {
   item.classList.add("item");
   item.innerText = symbol;
 
-  let x = 10 + Math.random() * 80;
+  // 避免重疊：檢查現有水果位置
+  let x;
+  let valid = false;
+  let attempts = 0;
+  while (!valid && attempts < 20) { // 最多嘗試 20 次避免無限迴圈
+    x = 10 + Math.random() * 80;
+    valid = true;
+    board.querySelectorAll(".item").forEach(existing => {
+      const existingX = parseFloat(existing.style.left);
+      if (Math.abs(existingX - x) < 10) { // 距離太近就重抽
+        valid = false;
+      }
+    });
+    attempts++;
+  }
+
   item.style.left = `${x}%`;
   item.style.top = `-10%`;
 
