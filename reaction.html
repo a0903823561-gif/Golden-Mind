@@ -1,14 +1,68 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
   <title>反應車站</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* 與記憶花園相同的說明樣式 */
+    #instruction {
+      text-align: center;
+      margin: 20px;
+      padding: 20px;
+      border: 2px solid #3498db;
+      border-radius: 10px;
+      background-color: #232426;
+    }
+    #controls, #traffic-lights, #question, #progress, #timer-bar, #reaction-board, #result, #menu-btn {
+      display: none; /* 初始隱藏遊戲區 */
+    }
+    #traffic-lights {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .light {
+      width: 100px;
+      height: 100px;
+      border-radius: 100%;
+      background-color: gray;
+    }
+    .red { background-color: red; }
+    .yellow { background-color: yellow; }
+    .green { background-color: green; }
+    #timer-bar {
+      width: 80%;
+      height: 20px;
+      border: 1px solid #333;
+      margin: 10px auto;
+    }
+    #timer-progress {
+      height: 100%;
+      width: 0%;
+      background-color: #3498db;
+    }
+  </style>
 </head>
 <body>
   <h1>🚉 反應車站</h1>
   <p>燈號亮起時請快速點擊對應水果！</p>
 
+  <!-- 遊戲說明區 -->
+  <div id="instruction">
+    <h2>🎮 遊戲說明</h2>
+    <p>
+      當🔴、🟡、🟢亮起時，請在最短時間內點擊對應顏色的水果<br>
+      - 簡單模式：燈號速度較慢🐢，適合入門。<br>
+      - 中等模式：燈號速度中等🐪，需要專注。<br>
+       - 困難模式：燈號速度最快🐎，考驗反應力！<br>
+    </p>
+    <button onclick="showGame()">開始遊戲</button>
+  </div>
+
+  <!-- 難度選擇 -->
   <div id="controls">
     <button onclick="startReactionGame('easy')">簡單模式</button>
     <button onclick="startReactionGame('medium')">中等模式</button>
@@ -23,7 +77,6 @@
 
   <p id="question">題目會顯示在這裡</p>
   <p id="progress">進度會顯示在這裡</p>
-  <!-- 單一倒數計時條 -->
   <div id="timer-bar"><div id="timer-progress"></div></div>
 
   <div id="reaction-board"></div>
@@ -31,5 +84,18 @@
   <button id="menu-btn" onclick="goBackMenu()">返回選單</button>
 
   <script src="reaction.js"></script>
+  <script>
+    function showGame() {
+      document.getElementById("instruction").style.display = "none";
+      document.getElementById("controls").style.display = "block";
+      document.getElementById("traffic-lights").style.display = "flex";
+      document.getElementById("question").style.display = "block";
+      document.getElementById("progress").style.display = "block";
+      document.getElementById("timer-bar").style.display = "block";
+      document.getElementById("reaction-board").style.display = "block";
+      document.getElementById("result").style.display = "block";
+      document.getElementById("menu-btn").style.display = "inline-block";
+    }
+  </script>
 </body>
 </html>
