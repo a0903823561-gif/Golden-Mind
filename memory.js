@@ -16,7 +16,7 @@ function startGame(rows, cols, level) {
   result.innerText = "";
 
   // 建立符號池
-  const symbols = ["🍊","🥕","🍉","🍚","🍎","🍌","🍇","☎️","📻","☕","🍵","🕰️","🪭","🧺","🥟","🪑","🚲","🧹 "];
+  const symbols = ["🍊","🥕","🍉","🍚","🍎","🍌","🍇","☎️","📻","🍵","🕰️","🪭","🧺","🥟","🪑","🚲","🧹 "];
   let selected = symbols.slice(0, (rows*cols)/2);
   let cards = [...selected, ...selected].sort(() => Math.random() - 0.5);
 
