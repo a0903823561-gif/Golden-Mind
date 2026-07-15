@@ -3,6 +3,27 @@ let lockBoard = false;
 let matchedCount = 0;
 let totalPairs = 0;
 
+const symbols = ["🍊","🥕","🍉","🍚","🍎","🍌","🍇","☎️","📻","☕","🍵","🕰️","🪭","🧺","🥟","🪑","🚲","🧹"];
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+function getRandomSymbols(symbols, count) {
+  let pool = [...symbols];
+  let result = [];
+  for (let i = 0; i < count; i++) {
+    const index = Math.floor(Math.random() * pool.length);
+    result.push(pool[index]);
+    pool.splice(index, 1);
+  }
+  return result;
+}
+
 function startGame(rows, cols, level) {
   const board = document.getElementById("memory-board");
   const result = document.getElementById("result");
@@ -15,10 +36,10 @@ function startGame(rows, cols, level) {
   board.innerHTML = "";
   result.innerText = "";
 
-  // 建立符號池
-  const symbols = ["🍊","🥕","🍉","🍚","🍎","🍌","🍇","☎️","📻","🍵","🕰️","🪭","🧺","🥟","🪑","🚲","🧹 "];
-  let selected = symbols.slice(0, (rows*cols)/2);
-  let cards = [...selected, ...selected].sort(() => Math.random() - 0.5);
+  // 隨機挑選符號，確保機率平均
+  let selected = getRandomSymbols(symbols, (rows*cols)/2);
+  let cards = [...selected, ...selected];
+  cards = shuffle(cards);
 
   totalPairs = selected.length;
   matchedCount = 0;
@@ -61,7 +82,6 @@ function flipCard(card, symbol) {
     firstCard = { card, symbol };
   } else {
     if (firstCard.symbol === symbol) {
-      // 配對成功
       matchedCount++;
       firstCard = null;
 
@@ -69,7 +89,6 @@ function flipCard(card, symbol) {
         document.getElementById("result").innerText = "🎉 恭喜過關！全部配對完成！";
       }
     } else {
-      // 配對失敗，翻回去
       lockBoard = true;
       setTimeout(() => {
         card.classList.remove("flipped");
