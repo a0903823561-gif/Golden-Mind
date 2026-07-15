@@ -3,7 +3,7 @@ let lockBoard = false;
 let matchedCount = 0;
 let totalPairs = 0;
 
-const symbols = ["🍊","🥕","🍉","🍚","🍎","🍌","🍇","☎️","📻","☕","🍵","🕰️","🪭","🧺","🥟","🪑","🚲","🧹"];
+const symbols = ["🍊","🥕","🍉","🍚","🍎","🍌","🍇","☎️","📻","🍵","🕰️","🪭","🧺","🥟","🪑","🚲","🧹"];
 
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
